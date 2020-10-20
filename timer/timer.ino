@@ -59,7 +59,7 @@ void loop() {
 
 void getMachineInput() {
   while (mySerial.available() ) {
-    displayOn = true;
+//    displayOn = true;
     serialUpdateMillis = millis();
     rc = mySerial.read();
 
@@ -106,7 +106,7 @@ void detectChanges() {
   } else {
     timerStopMillis = 0;
   }
-  if (!timerStarted && displayOn && timerDisplayOffMillis >= 0 && (millis() - timerDisplayOffMillis > 1000 * 60 * 3)) {
+  if (!timerStarted && displayOn && timerDisplayOffMillis >= 0 && (millis() - timerDisplayOffMillis > 1000 * 60 * 60)) {
     timerDisplayOffMillis = 0;
     displayOn = false;
     Serial.println("Sleep");
