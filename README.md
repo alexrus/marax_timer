@@ -25,7 +25,7 @@ You connect the oled display like this:
 The reed switch goes to ground and D7
 
 The reed switch will pe glued onto the machine's vibration pump like this:
-![](resources/pump.JPG)
+![](resources/pump.jpg)
 
 If you have a Lelit MaraX machine, open the underside of the machine and you will see a 6 pin connector.
 
@@ -51,7 +51,7 @@ The display should go to sleep after 1 hour, and will wake up when the pump is s
 
 **UI:**
 
-![](resources/ui.JPG)
+![](resources/ui.jpg)
 
 
 This project uses the following dependencies:
