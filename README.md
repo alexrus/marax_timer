@@ -59,6 +59,7 @@ This project uses the following dependencies:
 * [https://github.com/adafruit/Adafruit_SSD1306](https://github.com/adafruit/Adafruit_SSD1306)
 * [https://github.com/adafruit/Adafruit_BusIO](https://github.com/adafruit/Adafruit_BusIO)
 * [https://github.com/adafruit/Adafruit-GFX-Library](https://github.com/adafruit/Adafruit-GFX-Library)
+* [https://github.com/JChristensen/Timer](https://github.com/JChristensen/Timer)
 
 
 
