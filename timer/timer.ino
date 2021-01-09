@@ -71,6 +71,7 @@ void getMachineInput() {
     } else {
       receivedChars[ndx] = '\0';
       ndx = 0;
+      Serial.println(receivedChars);
     }
   }
 
