@@ -154,13 +154,26 @@ void updateDisplay() {
           display.print("X");
         }
       }
-      // draw fill circle if heating on
-      if (String(receivedChars[23]) == "1") {
-        display.fillCircle(45, 7, 6, SSD1306_WHITE);
-      }
-      // draw empty circle if heating off
-      if (String(receivedChars[23]) == "0") {
-        display.drawCircle(45, 7, 6, SSD1306_WHITE);
+      if (String(receivedChars).substring(18, 22) == "0000") {
+        // not in boost heating mode
+        // draw fill circle if heating on
+        if (String(receivedChars[23]) == "1") {
+          display.fillCircle(45, 7, 6, SSD1306_WHITE);
+        }
+        // draw empty circle if heating off
+        if (String(receivedChars[23]) == "0") {
+          display.drawCircle(45, 7, 6, SSD1306_WHITE);
+        }
+      } else {
+        // in boost heating mode
+        // draw fill rectangle if heating on
+        if (String(receivedChars[23]) == "1") {
+          display.fillRect(39, 1, 12, 12, SSD1306_WHITE);
+        }
+        // draw empty rectangle if heating off
+        if (String(receivedChars[23]) == "0") {
+          display.drawRect(39, 1, 12, 12, SSD1306_WHITE);
+        }
       }
       // draw temperature
       if (receivedChars[14] && receivedChars[15] && receivedChars[16]) {
