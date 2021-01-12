@@ -108,6 +108,7 @@ void detectChanges() {
   if (!timerStarted && displayOn && timerDisplayOffMillis >= 0 && (millis() - timerDisplayOffMillis > 1000 * 60 * 60)) {
     timerDisplayOffMillis = 0;
     timerCount = 0;
+    prevTimerCount = 0;
     displayOn = false;
     Serial.println("Sleep");
   }
