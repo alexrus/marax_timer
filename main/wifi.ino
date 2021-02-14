@@ -2,6 +2,7 @@ String lastMachineState;
 int lastHxTemperature = NULL;
 int lastSteamTemperature = NULL;
 long lastTimerStartMillis = 0;
+bool lastTimerStarted = false;
 
 void setupWifi() { 
   WiFi.begin(SSID, PSK);
@@ -41,6 +42,11 @@ void updateWifi() {
     lastTimerStartMillis = timerStartMillis;
     broadcastShot();
   }
+
+  if (lastTimerStarted != timerStarted) {
+    lastTimerStarted = timerStarted;
+    brodcastPump();
+  }
 }
 
 void broadcastMachineState() {
@@ -61,4 +67,12 @@ void broadcastSteamTemperature() {
 
 void broadcastShot() {
   client.publish("/marax/shot", String(timerCount).c_str());
+}
+
+void brodcastPump() {
+  if (timerStarted) {
+    client.publish("/marax/pump", "on");
+  } else {
+    client.publish("/marax/power", "off");
+  }
 }

@@ -66,6 +66,7 @@ The time is not recorded unless 12 seconds have passed because MaraX machine sta
 If you connect the ESP to the wifi and provide a MQTT bridge the following messages will be broadcasted:
 
 - `/marax/power` with `on` or `off`
+- `/marax/pump` with `on` or `off`
 - `/marax/hx` with the current temperature of the heat exchanger
 - `/marax/steam` with the current temperature of the steam boiler
 - `/marax/shot` with the duration of the last shot (if the shot took longer than 15 seconds)

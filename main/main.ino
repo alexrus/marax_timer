@@ -47,7 +47,7 @@ char receivedChars[numChars];
 
 void setup() {
   Serial.begin(9600);
-  if (SSID && PSK && MQTT_BROKER) {
+  if (SSID != "" && PSK != "" && MQTT_BROKER != "") {
     setupWifi();
   } else {
     WiFi.mode(WIFI_OFF);
@@ -65,7 +65,7 @@ void loop() {
   updateTimer();
   updateSerial();
   
-  if (SSID && PSK && MQTT_BROKER) {
+  if (SSID != "" && PSK != "" && MQTT_BROKER != "") {
     updateWifi();
   }
 }
