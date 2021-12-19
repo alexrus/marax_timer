@@ -77,9 +77,12 @@ void getMachineInput() {
 
   if (millis() - serialUpdateMillis > 5000) {
     serialUpdateMillis = millis();
-    memset(receivedChars, 0, numChars );
-    Serial.println("Request serial update");
-    mySerial.write(0x11);
+    // Looking for a known bad character from the Mara X and skipping the update if present
+    if (String(receivedChars[0]) != "⸮") {
+      memset(receivedChars, 0, numChars );
+      Serial.println("Request serial update");
+      mySerial.write(0x11);
+    }
   }
 }
 
