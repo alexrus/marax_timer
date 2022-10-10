@@ -15,6 +15,8 @@ Adafruit_SSD1306 display(128, 64, &Wire, -1);
 SoftwareSerial mySerial(D5, D6);
 Timer t;
 
+// set to true/false when using another type of reed sensor
+bool reedOpenSensor = false;
 bool displayOn = true;
 int timerCount = 0;
 int prevTimerCount = 0;
@@ -23,6 +25,7 @@ long timerStartMillis = 0;
 long timerStopMillis = 0;
 long timerDisplayOffMillis = 0;
 long serialUpdateMillis = 0;
+int pumpInValue = 0;
 
 const byte numChars = 32;
 char receivedChars[numChars];
@@ -77,7 +80,7 @@ void getMachineInput() {
 
   if (millis() - serialUpdateMillis > 5000) {
     serialUpdateMillis = millis();
-    memset(receivedChars, 0, numChars );
+    memset(receivedChars, 0, numChars);
     Serial.println("Request serial update");
     mySerial.write(0x11);
   }
@@ -85,13 +88,18 @@ void getMachineInput() {
 
 void detectChanges() {
   digitalWrite(LED_BUILTIN, digitalRead(PUMP_PIN));
-  if (!timerStarted && !digitalRead(PUMP_PIN)) {
+  if(reedOpenSensor) {
+    pumpInValue = !digitalRead(PUMP_PIN)
+  } else {
+    pumpInValue = digitalRead(PUMP_PIN)
+  }
+  if (!timerStarted && !pumpInValue) {
     timerStartMillis = millis();
     timerStarted = true;
     displayOn = true;
     Serial.println("Start pump");
   }
-  if (timerStarted && digitalRead(PUMP_PIN)) {
+  if (timerStarted && pumpInValue) {
     if (timerStopMillis == 0) {
       timerStopMillis = millis();
     }
