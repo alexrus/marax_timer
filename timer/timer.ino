@@ -16,7 +16,7 @@ SoftwareSerial mySerial(D5, D6);
 Timer t;
 
 // set to true/false when using another type of reed sensor
-bool reedOpenSensor = false;
+bool reedOpenSensor = true;
 bool displayOn = true;
 int timerCount = 0;
 int prevTimerCount = 0;
@@ -89,9 +89,9 @@ void getMachineInput() {
 void detectChanges() {
   digitalWrite(LED_BUILTIN, digitalRead(PUMP_PIN));
   if(reedOpenSensor) {
-    pumpInValue = !digitalRead(PUMP_PIN)
-  } else {
     pumpInValue = digitalRead(PUMP_PIN)
+  } else {
+    pumpInValue = !digitalRead(PUMP_PIN)
   }
   if (!timerStarted && !pumpInValue) {
     timerStartMillis = millis();
