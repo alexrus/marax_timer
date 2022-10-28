@@ -89,9 +89,9 @@ void getMachineInput() {
 void detectChanges() {
   digitalWrite(LED_BUILTIN, digitalRead(PUMP_PIN));
   if(reedOpenSensor) {
-    pumpInValue = digitalRead(PUMP_PIN)
+    pumpInValue = digitalRead(PUMP_PIN);
   } else {
-    pumpInValue = !digitalRead(PUMP_PIN)
+    pumpInValue = !digitalRead(PUMP_PIN);
   }
   if (!timerStarted && !pumpInValue) {
     timerStartMillis = millis();
